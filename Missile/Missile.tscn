@@ -1,9 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://duwqbvge6cfro"]
+[gd_scene load_steps=8 format=3 uid="uid://duwqbvge6cfro"]
 
-[ext_resource type="Script" uid="uid://cetat2lr3sxac" path="res://missile.gd" id="1_pf3os"]
-[ext_resource type="PackedScene" uid="uid://satd1ivqlrcd" path="res://Crosshair.tscn" id="2_0sc8w"]
 [ext_resource type="Texture2D" uid="uid://om6yfmit2dso" path="res://smoke-6x6.png" id="3_5onpw"]
-[ext_resource type="PackedScene" uid="uid://c1o51k2w7ccym" path="res://Explosion.tscn" id="3_bg26n"]
 
 [sub_resource type="Curve" id="Curve_bg26n"]
 _data = [Vector2(0, 0.901099), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -26,10 +23,10 @@ gravity = Vector3(0, -4, 0)
 scale_curve = SubResource("CurveTexture_bg26n")
 alpha_curve = SubResource("CurveTexture_fenu4")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xet8p"]
+radius = 3.0
+
 [node name="Missile" type="Node2D"]
-script = ExtResource("1_pf3os")
-crosshair_scene = ExtResource("2_0sc8w")
-explosion_scene = ExtResource("3_bg26n")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 240
@@ -42,5 +39,13 @@ process_material = SubResource("ParticleProcessMaterial_0sc8w")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xet8p")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
