@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dha3srfoxr8dv"]
+
+[ext_resource type="Script" uid="uid://vcx53khpplcb" path="res://game.gd" id="1_wbfu4"]
+[ext_resource type="PackedScene" uid="uid://duwqbvge6cfro" path="res://Missile.tscn" id="2_xkndl"]
+[ext_resource type="PackedScene" uid="uid://satd1ivqlrcd" path="res://Crosshair.tscn" id="3_u44n3"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_wbfu4")
+missile_scene = ExtResource("2_xkndl")
+crosshair_scene = ExtResource("3_u44n3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

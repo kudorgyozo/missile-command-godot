@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://duwqbvge6cfro"]
+
+[ext_resource type="Script" uid="uid://cetat2lr3sxac" path="res://missile.gd" id="1_pf3os"]
+[ext_resource type="PackedScene" uid="uid://satd1ivqlrcd" path="res://Crosshair.tscn" id="2_0sc8w"]
+[ext_resource type="Texture2D" uid="uid://om6yfmit2dso" path="res://smoke-6x6.png" id="3_5onpw"]
+[ext_resource type="PackedScene" uid="uid://c1o51k2w7ccym" path="res://Explosion.tscn" id="3_bg26n"]
+
+[sub_resource type="Curve" id="Curve_bg26n"]
+_data = [Vector2(0, 0.901099), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fenu4"]
+texture_mode = 1
+curve = SubResource("Curve_bg26n")
+
+[sub_resource type="Curve" id="Curve_5onpw"]
+_data = [Vector2(0, 0.28022), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bg26n"]
+curve = SubResource("Curve_5onpw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0sc8w"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -4, 0)
+scale_curve = SubResource("CurveTexture_bg26n")
+alpha_curve = SubResource("CurveTexture_fenu4")
+
+[node name="Missile" type="Node2D"]
+script = ExtResource("1_pf3os")
+crosshair_scene = ExtResource("2_0sc8w")
+explosion_scene = ExtResource("3_bg26n")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 240
+texture = ExtResource("3_5onpw")
+lifetime = 2.0
+fixed_fps = 60
+visibility_rect = Rect2(-50, -50, 100, 100)
+process_material = SubResource("ParticleProcessMaterial_0sc8w")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
