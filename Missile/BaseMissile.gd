@@ -1,6 +1,13 @@
 class_name BaseMissile
 extends Node2D
 
+@onready var gpuParticles: GPUParticles2D = $GPUParticles2D
+@onready var timer: Timer = $Timer
+@onready var area2d: Area2D = $Area2D
+
+var explosion_scene = preload("res://Explosion.tscn")
+var crosshair_scene = preload("res://Crosshair.tscn")
+
 var target: Vector2
 var direction: Vector2
 var speed: float = 0
@@ -11,7 +18,7 @@ var missile_radius: float = 4
 
 func _ready():
 	direction = (target - position).normalized()
-	$Timer.wait_time = $GPUParticles2D.lifetime
+	timer.wait_time = gpuParticles.lifetime
 
 func _physics_process(delta: float) -> void:
 	if disabled : return
@@ -33,15 +40,14 @@ func explode():
 	# Remove crosshair, disable missile
 	if crosshair: crosshair.queue_free()
 	disabled = true
-	$Timer.start()
-	$GPUParticles2D.emitting = false
+	timer.start()
+	gpuParticles.emitting = false
 	
 	queue_redraw()
-	($Area2D as Area2D).monitoring = false
+	area2d.monitoring = false
 	
 	# Create explosion 
-	var explosion = load("res://Explosion.tscn").instantiate() as Node2D
-	
+	var explosion = explosion_scene.instantiate() as Node2D
 	explosion.position = position
 	explosion.max_radius = explosion_radius
 	get_parent().add_child(explosion)  # Add explosion to the game scene
