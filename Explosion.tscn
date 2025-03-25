@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://drn3jwxool8iw" path="res://explosion.gd" id="1_oxoqp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxoqp"]
+resource_local_to_scene = true
 radius = 1.0
 
 [node name="Explosion" type="Node2D"]

@@ -35,12 +35,12 @@ func explode():
 	disabled = true
 	$Timer.start()
 	$GPUParticles2D.emitting = false
+	
 	queue_redraw()
 	($Area2D as Area2D).monitoring = false
 	
 	# Create explosion 
-	#var explosion = load("res://Explosion.tscn").instantiate() as Node2D
-	var explosion = ResourceLoader.load("res://Explosion.tscn", "", ResourceLoader.CACHE_MODE_IGNORE_DEEP).instantiate() as Node2D
+	var explosion = load("res://Explosion.tscn").instantiate() as Node2D
 	
 	explosion.position = position
 	explosion.max_radius = explosion_radius
