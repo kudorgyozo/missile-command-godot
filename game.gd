@@ -13,7 +13,7 @@ var enemyMissileScript = preload("res://Missile/EnemyMissile.gd")
 
 func _ready() -> void:
 	preload("res://Explosion.tscn")
-	preload("res://Crosshair.tscn")
+	preload("res://Crosshair/Crosshair.tscn")
 	preload("res://Missile/Missile.tscn")
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
@@ -39,4 +39,3 @@ func spawn_enemy_missile() -> void:
 	missile.position = Vector2(xStartPos, 0)  # Bottom center
 	missile.target = Vector2(xEndPos, get_viewport_rect().size.y)
 	add_child(missile)
-	

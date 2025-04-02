@@ -9,6 +9,10 @@ func _ready() -> void:
 	gpuParticles.lifetime = 6
 	gpuParticles.amount = 90
 	timer.wait_time = 6
-	
+
+func _physics_process(delta: float) -> void:
+	var delta_pos = direction * speed * delta
+	position += delta_pos
+
 func explosion_area_entered(_area: Area2D):
 	super.call_deferred("explode")

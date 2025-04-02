@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dha3srfoxr8dv"]
+[gd_scene load_steps=4 format=3 uid="uid://dha3srfoxr8dv"]
 
 [ext_resource type="Script" uid="uid://vcx53khpplcb" path="res://game.gd" id="1_wbfu4"]
 [ext_resource type="PackedScene" uid="uid://duwqbvge6cfro" path="res://Missile/Missile.tscn" id="2_xkndl"]
+[ext_resource type="PackedScene" uid="uid://c1wqpp5wy2run" path="res://City.tscn" id="3_u44n3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_wbfu4")
@@ -10,5 +11,26 @@ missile_scene = ExtResource("2_xkndl")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="Cities" type="Node2D" parent="."]
+visible = false
+
+[node name="City" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(235, 900)
+
+[node name="City2" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(443, 900)
+
+[node name="City3" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(662, 900)
+
+[node name="City4" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(1055, 900)
+
+[node name="City5" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(1208, 900)
+
+[node name="City6" parent="Cities" instance=ExtResource("3_u44n3")]
+position = Vector2(1365, 900)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
