@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MissileResource" load_steps=2 format=3 uid="uid://cyidbs2pcb3a6"]
+
+[ext_resource type="Script" uid="uid://bamy7x8b2sloe" path="res://Missile/MissileResource.gd" id="1_v4hrs"]
+
+[resource]
+script = ExtResource("1_v4hrs")
+particleTimeout = 12.0
+speed = 50.0
+explosion_radius = 20.0
+metadata/_custom_type_script = "uid://bamy7x8b2sloe"

@@ -10,10 +10,10 @@ extends Node2D
 
 var playerMissileScript = preload("res://Missile/PlayerMissile.gd")
 var enemyMissileScript = preload("res://Missile/EnemyMissile.gd")
+var enemyMissileRes = preload("res://Missile/EnemyMissile.tres")
+var playerMissileRes = preload("res://Missile/PlayerMissile.tres")
 
 func _ready() -> void:
-	preload("res://Explosion.tscn")
-	preload("res://Crosshair/Crosshair.tscn")
 	preload("res://Missile/Missile.tscn")
 	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
@@ -24,6 +24,7 @@ func _input(event):
 func spawn_player_missile(target: Vector2):
 	var missile = missile_scene.instantiate()
 	missile.set_script(playerMissileScript)
+	missile.resource = playerMissileRes
 	missile.position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y)  # Bottom center
 	missile.target = target
 	add_child(missile)
@@ -34,6 +35,7 @@ func _on_timer_timeout() -> void:
 func spawn_enemy_missile() -> void:
 	var missile = missile_scene.instantiate()
 	missile.set_script(enemyMissileScript)
+	missile.resource = enemyMissileRes
 	var xStartPos = randf_range(get_viewport_rect().size.x * 0.1, get_viewport_rect().size.x * 0.9)
 	var xEndPos = randf_range(get_viewport_rect().size.x * 0.1, get_viewport_rect().size.x * 0.9)
 	missile.position = Vector2(xStartPos, 0)  # Bottom center

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjsqr6u1wky7d"]
+
+[ext_resource type="Texture2D" uid="uid://om6yfmit2dso" path="res://Missile/smoke-6x6.png" id="1_hxgb6"]
+[ext_resource type="Script" uid="uid://cn5v2bi3hi5wa" path="res://Missile/particle.gd" id="2_ordqx"]
+
+[sub_resource type="Curve" id="Curve_hxgb6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ordqx"]
+curve = SubResource("Curve_hxgb6")
+
+[sub_resource type="Curve" id="Curve_copyh"]
+_data = [Vector2(0, 0.251309), 0.0, 0.0, 0, 0, Vector2(1, 0.74874), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kkcw2"]
+curve = SubResource("Curve_copyh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vcnva"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kkcw2")
+alpha_curve = SubResource("CurveTexture_ordqx")
+
+[node name="Particle" type="GPUParticles2D"]
+amount = 180
+texture = ExtResource("1_hxgb6")
+lifetime = 2.0
+fixed_fps = 60
+visibility_rect = Rect2(-50, -50, 100, 100)
+process_material = SubResource("ParticleProcessMaterial_vcnva")
+script = ExtResource("2_ordqx")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

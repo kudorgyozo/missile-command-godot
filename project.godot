@@ -29,7 +29,7 @@ window/stretch/mode="canvas_items"
 
 2d_physics/layer_1="Missiles"
 2d_physics/layer_2="Explosions"
-2d_physics/layer_3="Crosshairs"
+2d_physics/layer_3="Targets"
 
 [rendering]
 
