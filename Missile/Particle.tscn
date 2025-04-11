@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cjsqr6u1wky7d"]
 
-[ext_resource type="Texture2D" uid="uid://om6yfmit2dso" path="res://Missile/smoke-6x6.png" id="1_hxgb6"]
+[ext_resource type="Texture2D" uid="uid://doxe3fi7cx7i6" path="res://Missile/smoke4x4.png" id="1_hxgb6"]
 [ext_resource type="Script" uid="uid://cn5v2bi3hi5wa" path="res://Missile/particle.gd" id="2_ordqx"]
 
 [sub_resource type="Curve" id="Curve_hxgb6"]
@@ -20,6 +20,8 @@ curve = SubResource("Curve_copyh")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vcnva"]
 particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+spread = 0.0
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_kkcw2")
 alpha_curve = SubResource("CurveTexture_ordqx")
@@ -27,7 +29,6 @@ alpha_curve = SubResource("CurveTexture_ordqx")
 [node name="Particle" type="GPUParticles2D"]
 amount = 180
 texture = ExtResource("1_hxgb6")
-lifetime = 2.0
 fixed_fps = 60
 visibility_rect = Rect2(-50, -50, 100, 100)
 process_material = SubResource("ParticleProcessMaterial_vcnva")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://om6yfmit2dso"
-path="res://.godot/imported/smoke-6x6.png-7c0a1995b4d4fcd229558ccfccdc1d98.ctex"
+uid="uid://doxe3fi7cx7i6"
+path="res://.godot/imported/smoke4x4.png-5cb7ae61e22367a7e085d7744e2c89dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Missile/smoke-6x6.png"
-dest_files=["res://.godot/imported/smoke-6x6.png-7c0a1995b4d4fcd229558ccfccdc1d98.ctex"]
+source_file="res://Missile/smoke4x4.png"
+dest_files=["res://.godot/imported/smoke4x4.png-5cb7ae61e22367a7e085d7744e2c89dd.ctex"]
 
 [params]
 

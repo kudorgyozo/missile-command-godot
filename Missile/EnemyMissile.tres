@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_v4hrs")
-particleTimeout = 12.0
+particleTimeout = 10.0
 speed = 50.0
-explosion_radius = 20.0
+explosion_radius = 35.0
+particle_speedup_on_death = 5.0
 metadata/_custom_type_script = "uid://bamy7x8b2sloe"

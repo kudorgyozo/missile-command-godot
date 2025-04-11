@@ -22,11 +22,31 @@ func _input(event):
 		spawn_player_missile(event.position)
 
 func spawn_player_missile(target: Vector2):
+
+	# var my_lambda = func (prev, curr: Array):
+	# 	var dist =  target.distance_to(curr[1].position)
+	# 	return curr
+	# 	pass
+
+	var launchers = get_tree().get_nodes_in_group("Launchers") as Array[Node2D]
+	# launchers.reduce(my_lambda, [90000, launchers[0]])
+
+	var distMax: float = 9_999_999_999
+	var origin: Vector2 = Vector2.ZERO
+
+	for launcher in launchers:
+		var dist = target.distance_squared_to(launcher.position)
+		if dist < distMax:
+			distMax = dist
+			origin = launcher.launchPoint.global_position
+		pass
+
 	var missile = missile_scene.instantiate()
 	missile.set_script(playerMissileScript)
 	missile.resource = playerMissileRes
-	missile.position = Vector2(get_viewport_rect().size.x / 2, get_viewport_rect().size.y)  # Bottom center
-	missile.target = target
+	missile.position = origin
+	missile.origin_pos = origin
+	missile.target_pos = target
 	add_child(missile)
 
 func _on_timer_timeout() -> void:
@@ -39,5 +59,6 @@ func spawn_enemy_missile() -> void:
 	var xStartPos = randf_range(get_viewport_rect().size.x * 0.1, get_viewport_rect().size.x * 0.9)
 	var xEndPos = randf_range(get_viewport_rect().size.x * 0.1, get_viewport_rect().size.x * 0.9)
 	missile.position = Vector2(xStartPos, 0)  # Bottom center
-	missile.target = Vector2(xEndPos, get_viewport_rect().size.y)
+	missile.origin_pos = missile.position
+	missile.target_pos = Vector2(xEndPos, get_viewport_rect().size.y)
 	add_child(missile)

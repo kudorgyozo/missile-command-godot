@@ -7,4 +7,5 @@ script = ExtResource("1_i0vud")
 particleTimeout = 5.0
 speed = 350.0
 explosion_radius = 40.0
+particle_speedup_on_death = 3.0
 metadata/_custom_type_script = "uid://bamy7x8b2sloe"

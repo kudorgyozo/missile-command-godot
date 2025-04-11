@@ -4,12 +4,11 @@ func _ready():
 	super._ready()
 	# player missile spawns crosshair also
 	crosshair = crosshair_scene.instantiate()
-	crosshair.position = target  # Place it at the target location
+	crosshair.position = target_pos  # Place it at the target location
 	get_parent().add_child(crosshair)  # Add it to the game (not the missile)
 
 func _physics_process(delta: float) -> void:
-	var delta_pos = direction * resource.speed * delta
-	var next_pos = position + delta_pos
+	var next_pos = position + direction * resource.speed * delta
 	# ray cast ahead
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsRayQueryParameters2D.create(position, next_pos)
@@ -20,7 +19,7 @@ func _physics_process(delta: float) -> void:
 	var result = space_state.intersect_ray(query)
 	
 	if result and result.collider:
-		position = target
+		position = target_pos
 		set_physics_process(false)
 		set_process(false)
 		explode()
